@@ -1,0 +1,60 @@
+ID,Type,Name,Parent ID,Parent Type,Plant
+BNGL,Functional Location,Bangalore Location,,,0001
+BNGL-B01,Functional Location,Bangalore building 01 Location ,BNGL,Functional Location,0001
+BNGL-B02,Functional Location,Bangalore building 02 Location ,BNGL,Functional Location,0001
+BNGL-B03,Functional Location,Bangalore building 03 Location ,BNGL,Functional Location,0001
+BNGL-B04,Functional Location,Bangalore building 04 Location ,BNGL,Functional Location,0001
+BNGL-B05,Functional Location,Bangalore building 05 Location ,BNGL,Functional Location,0001
+BNGL-B01-FL01,Functional Location,Bangalore building 01 Floor 01,BNGL-B01,Functional Location,0001
+BNGL-B01-FL02,Functional Location,Bangalore building 01 Floor 02,BNGL-B01,Functional Location,0001
+BNGL-B01-FL03,Functional Location,Bangalore building 01 Floor 03,BNGL-B01,Functional Location,0001
+BNGL-B01-FL04,Functional Location,Bangalore building 01 Floor 04,BNGL-B01,Functional Location,0001
+BNGL-B02-FL01,Functional Location,Bangalore building 02 Floor 02,BNGL-B02,Functional Location,0001
+BNGL-B02-FL02,Functional Location,Bangalore building 02 Floor 02,BNGL-B02,Functional Location,0001
+BNGL-B02-FL03,Functional Location,Bangalore building 02 Floor 03,BNGL-B02,Functional Location,0001
+BNGL-B02-FL04,Functional Location,Bangalore building 02 Floor 01,BNGL-B02,Functional Location,0001
+BNGL-B03-FL01,Functional Location,Bangalore building 03 Floor 01,BNGL-B03,Functional Location,0001
+BNGL-B03-FL02,Functional Location,Bangalore building 03 Floor 02,BNGL-B03,Functional Location,0001
+BNGL-B03-FL03,Functional Location,Bangalore building 03 Floor 03,BNGL-B03,Functional Location,0001
+BNGL-B03-FL04,Functional Location,Bangalore building 03 Floor 04,BNGL-B03,Functional Location,0001
+10707359,Equipment,120 Ton Power Press,BNGL-B01-FL01,Functional Location,0001
+10707360,Equipment,100 Ton CNC Shearing Machine,BNGL-B01-FL02,Functional Location,0001
+10707361,Equipment,500 KVA Diesel Generator,BNGL-B01-FL03,Functional Location,0001
+10707362,Equipment,Air Compressor Unit,BNGL-B01-FL04,Functional Location,0001
+10707363,Equipment,Hydraulic Press Machine,BNGL-B02-FL01,Functional Location,0001
+10707364,Equipment,Spot Welding Machine,BNGL-B02-FL02,Functional Location,0001
+10707365,Equipment,Cooling Tower,BNGL-B03-FL01,Functional Location,0001
+10707366,Equipment,3D Measurement Machine,BNGL-B03-FL02,Functional Location,0001
+10707367,Equipment,Surface Roughness Tester,BNGL-B04-FL01,Functional Location,0001
+10707369,Equipment,Automated Storage Unit,BNGL-B04-FL02,Functional Location,0001
+307006,Material,Panel Module,10707359,Equipment,0001
+307007,Material,Sensor System,10707361,Equipment,0001
+307008,Material,Hydraulic Module,10707363,Equipment,0001
+307009,Material,Sensor System,10707365,Equipment,0001
+307010,Material,Panel System,10707367,Equipment,0001
+307021,Material,Sensor Pump,10707364,Equipment,0001
+307022,Material,Control Module,307009,Material,0001
+307023,Material,Sensor Pump,307009,Material,0001
+307024,Material,Control Pump,10707362,Equipment,0001
+307025,Material,Hydraulic Module,10707360,Equipment,0001
+307026,Material,Panel Unit,307025,Material,0001
+307027,Material,Panel Pump,307025,Material,0001
+307028,Material,Hydraulic Unit,307025,Material,0001
+307029,Material,Hydraulic System,307025,Material,0001
+307030,Material,Sensor Unit,307025,Material,0001
+307031,Material,Control Unit,307025,Material,0001
+307032,Material,Panel Module,307025,Equipment,0001
+307033,Material,Control Unit,307025,Material,0001
+307034,Material,Coolant,307025,Material,0001
+307035,Material,Control Unit,10707366,Equipment,0001
+307036,Material,Radiator,307032,Material,0001
+307006,Material,Panel Module,10707369,Equipment,0001
+307006,Material,Panel Module,307035,Material,0001
+307037,Material,Shaft,10707364,Equipment,0001
+307038,Material,Rotatory Shaft,307006,Material,0001
+307039,Material,Exhaust Pipe,10707365,Equipment,0001
+307040,Material,Coupling,307006,Material,0001
+307041,Material,Bearing,10707361,Equipment,0001
+307042,Material,Generator engine,10707363,Equipment,0001
+307043,Material,Valve,10707363,Equipment,0001
+307042,Material,Generator engine,10707360,Equipment,0001
