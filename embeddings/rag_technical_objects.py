@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from gen_ai_hub.proxy.langchain.openai import OpenAIEmbeddings, ChatOpenAI
 from gen_ai_hub.proxy.core.proxy_clients import get_proxy_client
 from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.document_loaders import CSVLoader  # Updated import path for CSVLoader
+from langchain_community.document_loaders import CSVLoader  # Updated import path
 
 # Load environment variables
 load_dotenv()
@@ -58,7 +58,6 @@ connection = dbapi.connect(
 
 # Load technical objects from CSV
 csv_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'technicalObject.csv'))
-
 if not os.path.exists(csv_file_path):
     raise FileNotFoundError(f"CSV file not found at: {csv_file_path}")
 
@@ -92,28 +91,27 @@ CREATE TABLE TECHNICAL_OBJECTS (
 );
 '''
 
-# Drop existing table if it exists
 cursor = connection.cursor()
 
-drop_table_sql = "DROP TABLE TECHNICAL_OBJECTS"
-cursor.execute(drop_table_sql)
-print("Table TECHNICAL_OBJECTS dropped successfully.")
-
-# Check if the table exists and drop it
-check_table_sql = "SELECT TABLE_NAME FROM TABLES WHERE TABLE_NAME = 'TECHNICAL_OBJECTS'"
-cursor.execute(check_table_sql)
-if cursor.fetchone():
-    drop_table_sql = "DROP TABLE TECHNICAL_OBJECTS"
-    cursor.execute(drop_table_sql)
+# Drop existing table if it exists
+try:
+    cursor.execute("DROP TABLE IF EXISTS TECHNICAL_OBJECTS")
     print("Table TECHNICAL_OBJECTS dropped successfully.")
+except dbapi.ProgrammingError as e:
+    print(f"Warning: Could not drop table. Details: {e}")
 
 # Create new table
 cursor.execute(create_table_sql)
 print("New table TECHNICAL_OBJECTS with REAL_VECTOR column created successfully.")
 
 # Insert data into SAP HANA
-sql_insert = 'INSERT INTO TECHNICAL_OBJECTS(ID, TYPE, NAME, PARENTID, PARENTTYPE, PLANT, VECTOR_STR) VALUES (?,?,?,?,?,?,TO_REAL_VECTOR(?))'
+sql_insert = '''
+INSERT INTO TECHNICAL_OBJECTS(ID, TYPE, NAME, PARENTID, PARENTTYPE, PLANT, VECTOR_STR)
+VALUES (?, ?, ?, ?, ?, ?, TO_REAL_VECTOR(?))
+'''
 cursor.executemany(sql_insert, prepared_data)
+
+# Clean up
 cursor.close()
 connection.close()
 print("Embeddings stored successfully.")
