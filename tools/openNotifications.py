@@ -16,6 +16,7 @@ base_url = 'https://ldai1qm7.wdf.sap.corp:44320'
 requests.packages.urllib3.disable_warnings()
 
 def get_notifications(tech_obj_label):
+    """" get open notification user will give the  TechnicalObjectLabel based on that get the notificatoins"""
     select_fields = (
         "TechnicalObjectLabel,MaintenanceNotification,MaintNotifInternalID,"
         "MaintenancePlanningPlant,MaintenancePlannerGroup,TechObjIsEquipOrFuncnlLocDesc,"

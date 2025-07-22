@@ -1,3 +1,7 @@
+"""
+Backend module for SAP AI Assistant using LangGraph and SAP BTP AI Core
+"""
+
 import sys
 import os
 import json
@@ -206,7 +210,7 @@ class LangGraphAgent:
         # Add edges
         builder.add_edge(START, "supervisor")
         builder.add_conditional_edges("supervisor", tools_condition)
-        builder.add_edge("tools", "supervisor")
+        builder.add_edge("tools", END)
         
         # Compile graph with memory
         self.graph = builder.compile(checkpointer=self.memory)

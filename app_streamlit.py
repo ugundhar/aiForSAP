@@ -7,8 +7,7 @@ import traceback
 from datetime import datetime
 
 # Import backend components
-from backend import config as default_config
-from setup import graph  # Import the graph object from setup.py
+from backend import graph, config as default_config
 
 # Page configuration
 st.set_page_config(
@@ -191,23 +190,23 @@ def invoke_graph(user_input: str) -> List[Dict[str, Any]]:
     try:
         # Prepare messages for graph
         graph_messages = [user_input]
-
+        
         # Add conversation history for context
         for msg in st.session_state.messages:
             if msg.get("is_user"):
                 graph_messages.append(msg["content"])
             else:
                 graph_messages.append(msg["content"])
-
+        
         # Configure graph with thread ID
         config = {"configurable": {"thread_id": st.session_state.thread_id}}
-
+        
         # Invoke graph
         result = graph.invoke({"messages": graph_messages}, config=config)
-
+        
         # Process and return messages
         return process_graph_response(result.get("messages", []))
-
+        
     except Exception as e:
         st.error(f"Graph invocation failed: {str(e)}")
         st.error("Please check your backend configuration and try again.")
@@ -286,7 +285,7 @@ def render_sidebar():
         # Flow diagram (if available)
         try:
             st.markdown("### 📊 Agent Flow")
-            st.image("flow1.png", caption="LangGraph Flow Diagram", use_container_width=True)
+            st.image("flow1.png", caption="LangGraph Flow Diagram", use_column_width=True)
         except:
             st.markdown("*Flow diagram not available*")
 

@@ -59,25 +59,17 @@ def post_notification(payload: dict):
         NotifProcessingPhase = notification.get("NotifProcessingPhase")
 
 
-
-        result={
-
-            "Notification Number":notification_number,
-            "Notification Tex": notification_text,
-            "NotificationType":notification_type,
-            "NotifProcessingPhase":NotifProcessingPhase
-
-        }
+        
 
         # Print the success message (this will appear in console)
-        # print("✅ Notification created successfully.")
-        # print(f"Notification Number: {notification_number}")
-        # print(f"Notification Text: {notification_text}")
-        # print(f"Notification Type: {notification_type}")
-        # print(f"NotifProcessingPhase: {NotifProcessingPhase}")
+        print("✅ Notification created successfully.")
+        print(f"Notification Number: {notification_number}")
+        print(f"Notification Text: {notification_text}")
+        print(f"Notification Type: {notification_type}")
+        print(f"NotifProcessingPhase: {NotifProcessingPhase}")
         
         # Return the full response for the agent to process
-        return result
+        return response_data
     else:
         error_message = f"POST failed with status code {response.status_code}"
         print(f"❌ {error_message}")
