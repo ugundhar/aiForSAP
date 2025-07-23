@@ -12,6 +12,7 @@ from langgraph.prebuilt import ToolNode
 from langgraph.graph.message import add_messages
 from typing import Annotated
 from langgraph.checkpoint.memory import MemorySaver
+from tools.orderapi import get_order_by_number
 
 from typing_extensions import TypedDict
 from langgraph.prebuilt import tools_condition
@@ -114,8 +115,6 @@ def openNotificatoins(TechnicalObjectLabel: str) -> str:
 
 
 ## create Notification
-
-## create Notification
 def createNofication(
         NotificationText:str,
         NotificationType:str,
@@ -148,6 +147,50 @@ def createNofication(
     # 3. Return the result as a JSON string for the agent.
     return json.dumps(result)
 
+## order details 
+# def  getOrderDetails(oredernumber:int)->str:
+    
+#      """
+#     Tool function to get order details from SAP system based on order number.
+#     Args:
+#         MaintenanceOrder (int): MaintenanceOrder number
+#     Returns:
+#         str: Message with order details summary
+#     """
+#      result=get_order_by_number(oredernumber)
+#      return result
+     
+def getOrderDetails(order_number: int) -> str:
+    """
+    Tool: getOrderDetails
+
+    Description:
+        Retrieves maintenance order details from SAP based on the provided order number.
+
+    Args:
+        order_number (int): The maintenance order number (e.g., 200200)
+
+    Returns:
+        str: A structured message containing key order details or an error message if not found.
+    """
+    try:
+        order_data = get_order_by_number(order_number)
+        if isinstance(order_data, dict) and "MaintenanceOrder" in order_data:
+            return (
+                f"✅ Maintenance Order Details:\n"
+                f"Order Number       : {order_data.get('MaintenanceOrder')}\n"
+                f"Description        : {order_data.get('MaintenanceOrderDesc')}\n"
+                f"Order Type         : {order_data.get('MaintenanceOrderType')}\n"
+                f"Planning Plant     : {order_data.get('MaintenancePlanningPlant')}\n"
+                f"Main Work Center   : {order_data.get('MainWorkCenter')}\n"
+                f"Technical Object   : {order_data.get('TechnicalObject')}"
+            )
+        else:
+            return f"❌ No valid data found for order number {order_number}."
+    except Exception as e:
+        return f"❌ Error while fetching order details: {str(e)}"
+
+
 ## Custom function
 def multiply(a:int,b:int)->int:
     """Multiply a and b
@@ -161,7 +204,7 @@ def multiply(a:int,b:int)->int:
     """
     return a*b
 
-tools=[multiply,openNotificatoins,retrieveTechnicalObjects,createNofication]
+tools=[multiply,openNotificatoins,retrieveTechnicalObjects,createNofication,getOrderDetails]
 llm_with_tools=llm.bind_tools(tools)
 # print(llm_with_tools)
 

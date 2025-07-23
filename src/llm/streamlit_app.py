@@ -3,7 +3,7 @@ import os
 
 
 
-import streamlit as st
+import app_streamlit as st
 from src.llm.gpt_client import chat_llm
 from src.llm.supervisor import handle_query
 
